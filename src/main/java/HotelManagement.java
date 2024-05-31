@@ -45,7 +45,6 @@ public class HotelManagement {
             availableRoom.setGuest(guest);
             int roomNumber = availableRoom.getNumber();
             roomOccupancy.put(roomNumber, roomOccupancy.getOrDefault(roomNumber, 0) + 1);
-            // Add occupancy history
             availableRoom.addOccupancyHistory(new RoomOccupancyHistory(name, surname, LocalDateTime.now().toString(), null));
             System.out.println("Guest " + name + " " + surname + " registered in room number " + roomNumber);
         } else {
@@ -58,7 +57,6 @@ public class HotelManagement {
             if (room.getNumber() == roomNumber && room.isOccupied()) {
                 room.setGuest(null);
                 System.out.println("Guest checked out from room number " + roomNumber);
-                // Update occupancy history
                 room.getOccupancyHistory().getLast().setCheckOutDate(LocalDateTime.now().toString());
                 return;
             }
